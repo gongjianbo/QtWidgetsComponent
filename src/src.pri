@@ -17,3 +17,6 @@ HEADERS += \
 
 FORMS += \
     $$PWD/mainwindow.ui
+
+include($$PWD/tooltip/tooltip.pri)
+INCLUDEPATH+=$$PWD/tooltip

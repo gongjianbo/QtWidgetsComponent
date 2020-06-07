@@ -11,20 +11,122 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Rectangle Component</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>656</width>
-     <height>23</height>
-    </rect>
-   </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+color:white;
+background-color:rgb(20,50,70);
+font:14px &quot;宋体&quot;;
+}
+/*TabWidget*/
+QTabWidget{
+/*给tabwidget设置etAttribute(Qt::WA_StyledBackground)*/
+border: 1px solid white;
+background-color:rgb(20,50,70);
+}
+QTabWidget::tab-bar{
+alignment:left;
+left:1px;
+}
+QTabWidget::pane { 
+/*background-color:rgb(20,50,70);*/
+border:1px solid white;
+} 
+QTabBar{
+/*只有有按钮的地方才是tabbar，空白处是tabwidget的*/
+background-color:white;
+}
+QTabBar::tab{/*页签*/
+min-height:28px;
+padding:0 10px;
+border:0;
+margin:1px 1px 0 0;
+background-color:rgb(20,50,70);
+}
+QTabBar::tab:hover{
+color:cyan;
+}
+QTabBar::tab:selected{
+background-color: rgb(20, 100, 150);
+}
+QTabBar::tab:selected:hover{
+}
+/*选项过多时的。。。*/
+QTabBar::tear{
+}
+QTabBar::scroller{
+}
+/*按钮*/
+QPushButton{
+border:1px solid white;
+background-color:rgb(200,150,0);
+}
+QPushButton:hover{
+background-color:rgb(255,170,0);
+}
+QPushButton:pressed{
+background-color:rgb(255,255,0);
+}
+QPushButton:disabled{
+background-color:rgb(150,150,150);
+}
+/**/
+QLabel{
+border: 1px solid white;
+background-color:rgb(20,50,90);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabToolTip">
+       <attribute name="title">
+        <string>ToolTip</string>
+       </attribute>
+       <widget class="QPushButton" name="btnToolTipA">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnToolTipB">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>20</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Disable</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabOther">
+       <attribute name="title">
+        <string>Other</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
