@@ -1,0 +1,2 @@
+# RectangleComponent
+QtWidgets的一些简易自定义组件
