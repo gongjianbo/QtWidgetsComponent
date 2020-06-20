@@ -14,7 +14,8 @@
    <string>Rectangle Component</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">*{
+   <string notr="true">QWidget,
+QLabel{
 color:white;
 background-color:rgb(20,50,70);
 font:14px &quot;宋体&quot;;
@@ -44,6 +45,9 @@ border:0;
 margin:1px 1px 0 0;
 background-color:rgb(20,50,70);
 }
+QTabBar::tab:first{
+margin-left:1px;
+}
 QTabBar::tab:hover{
 color:cyan;
 }
@@ -56,25 +60,6 @@ QTabBar::tab:selected:hover{
 QTabBar::tear{
 }
 QTabBar::scroller{
-}
-/*按钮*/
-QPushButton{
-border:1px solid white;
-background-color:rgb(200,150,0);
-}
-QPushButton:hover{
-background-color:rgb(255,170,0);
-}
-QPushButton:pressed{
-background-color:rgb(255,255,0);
-}
-QPushButton:disabled{
-background-color:rgb(150,150,150);
-}
-/**/
-QLabel{
-border: 1px solid white;
-background-color:rgb(20,50,90);
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -84,39 +69,10 @@ background-color:rgb(20,50,90);
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabToolTip">
+      <widget class="ToolTipDemo" name="tabToolTip">
        <attribute name="title">
         <string>ToolTip</string>
        </attribute>
-       <widget class="QPushButton" name="btnToolTipA">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>75</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btnToolTipB">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>20</y>
-          <width>75</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Disable</string>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="tabOther">
        <attribute name="title">
@@ -128,6 +84,14 @@ background-color:rgb(20,50,90);
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ToolTipDemo</class>
+   <extends>QWidget</extends>
+   <header>ToolTipDemo.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
