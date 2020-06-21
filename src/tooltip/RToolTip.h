@@ -5,7 +5,9 @@
 #include <QBasicTimer>
 
 /**
- * @brief 最简易的ToolTip
+ * @brief 最简易的ToolTip提示框
+ * @author 龚建波
+ * @date 2020-6-7
  * @note 这是顶层窗口不要设置parent
  * @details 顶层设置透明后，样式表失效了，所以我在里面套了一层label
  * 本来想外层也用QLabel，show时内层label把属性设置为外层的，感觉没必要
