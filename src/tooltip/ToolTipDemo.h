@@ -23,6 +23,7 @@ public:
 private:
     void initToolTip();
     void initDesktopTip();
+    void initDesktopTip2();
 
 private:
     Ui::ToolTipDemo *ui;
