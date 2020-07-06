@@ -67,11 +67,16 @@ QTabBar::scroller{
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="ToolTipDemo" name="tabToolTip">
        <attribute name="title">
         <string>ToolTip</string>
+       </attribute>
+      </widget>
+      <widget class="ComboBoxDemo" name="tabComboBox">
+       <attribute name="title">
+        <string>ComboBox</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tabOther">
@@ -89,6 +94,12 @@ QTabBar::scroller{
    <class>ToolTipDemo</class>
    <extends>QWidget</extends>
    <header>ToolTipDemo.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxDemo</class>
+   <extends>QWidget</extends>
+   <header>ComboBoxDemo.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
