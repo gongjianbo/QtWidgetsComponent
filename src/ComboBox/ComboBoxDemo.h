@@ -7,7 +7,6 @@ namespace Ui {
 class ComboBoxDemo;
 }
 
-
 /**
  * @brief 下拉框的demo集合页
  * @author 龚建波
@@ -20,6 +19,9 @@ class ComboBoxDemo : public QWidget
 public:
     explicit ComboBoxDemo(QWidget *parent = nullptr);
     ~ComboBoxDemo();
+
+private:
+    void initBasicComboBox();
 
 private:
     Ui::ComboBoxDemo *ui;

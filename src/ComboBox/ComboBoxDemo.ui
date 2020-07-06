@@ -6,14 +6,127 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>547</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+font:14px &quot;宋体&quot;;
+color:white;
+background-color:rgb(20,50,70);
+}
+/*按钮*/
+QPushButton{
+border:1px solid white;
+background-color:rgb(200,150,0);
+}
+QPushButton:hover{
+background-color:rgb(255,170,0);
+}
+QPushButton:pressed{
+background-color:rgb(255,255,0);
+}
+QPushButton:disabled{
+background-color:rgb(150,150,150);
+}
+/*下拉框*/
+QComboBox{
+border:1px solid white;
+}
+/**/
+QLabel{
+font:14px &quot;宋体&quot;;
+color:white;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>RBasicComboBox:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="RBasicComboBox" name="basicComboBoxA" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>130</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>130</width>
+         <height>28</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="RBasicComboBox" name="basicComboBoxB" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>130</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>130</width>
+         <height>28</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>328</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>RBasicComboBox</class>
+   <extends>QWidget</extends>
+   <header>RBasicComboBox.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
