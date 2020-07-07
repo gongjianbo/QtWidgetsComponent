@@ -1,6 +1,7 @@
 #include "ComboBoxDemo.h"
 #include "ui_ComboBoxDemo.h"
 
+#include "RBasicComboContainer.h"
 #include <QDebug>
 
 ComboBoxDemo::ComboBoxDemo(QWidget *parent) :
@@ -20,6 +21,9 @@ ComboBoxDemo::~ComboBoxDemo()
 
 void ComboBoxDemo::initBasicComboBox()
 {
+    ui->basicComboBoxA->getPopup()->setContainer(new RBasicComboContainer(this));
+    ui->basicComboBoxB->getPopup()->setContainer(new RBasicComboContainer(this));
+
     ui->basicComboBoxA->setItems({"aaa","bbb","ccc","ddd","eee","fff","ggg",
                                  "fff","iii","jjj","kkk","lll","mmm","nnn"});
     connect(ui->basicComboBoxA,&RBasicComboBox::currentIndexChanged,[this](int index){

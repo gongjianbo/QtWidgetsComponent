@@ -2,46 +2,49 @@
 #define RBASICCOMBOCONTAINER_H
 
 #include <QWidget>
-#include <QPushButton>
-#include <QPropertyAnimation>
 
 #include "RBasicComboView.h"
 
 /**
- * @brief BasicComboBox的弹框整体
+ * @brief BasicComboBox的弹框中的实体
  * @author 龚建波
  * @date 2020-7-6
+ * @details 自定义时继承该类并实现对应接口
+ * 附带了一个ListView版本的默认实现供参考
  */
 class RBasicComboContainer : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RBasicComboContainer(QWidget *parent = nullptr);
+    //init=true则调用默认初始化
+    explicit RBasicComboContainer(bool init=true,QWidget *parent = nullptr);
 
-    //弹框显示隐藏
-    void showPopup();
-    void hidePopup();
+    //box需要回调的接口
+    //当前行
+    virtual int getCurrentIndex() const;
+    virtual void setCurrentIndex(int index);
+    //数据项
+    virtual QList<QString> getItems() const;
+    virtual void setItems(const QList<QString> &items);
+    //根据文本设置当前行，返回当前行，-1为无效
+    virtual int checkTextRow(const QString &text);
+    //切换并获取当前行文本
+    virtual QString getCurrentText() const;
+    virtual QString getPrevText();
+    virtual QString getNextText();
 
-    //绑定弹出的目标组件，在其上或其下弹出
-    void attachTarget(QWidget *widget);
-    //列表
-    RBasicComboView *getBasicView() const;
+    //popup回调的接口
+    virtual int getContentsHeight() const;
 
 private:
-    //初始化组件设置
-    void initComponent();
-    //设置弹出框大小
-    void setPopSize(int width,int height);
+    void initDefault();
+
+signals:
+    void currentIndexChanged(int index);
+    void updateData();
 
 private:
-    //绑定下拉框主体，用于计算弹出位置
-    QWidget *targetWidget=nullptr;
-    //内部有一个widget用于弹出动画
-    QWidget *wrapper=new QWidget(this);
-    //弹出框中的列表
-    RBasicComboView *view=new RBasicComboView(this);
-    //弹出动画
-    QPropertyAnimation *animation=nullptr;
+    RBasicComboView *defaultView=nullptr;
 };
 
 #endif // RBASICCOMBOCONTAINER_H

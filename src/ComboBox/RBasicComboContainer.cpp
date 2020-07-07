@@ -1,85 +1,94 @@
 #include "RBasicComboContainer.h"
 
-#include <QButtonGroup>
 #include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QDebug>
 
-RBasicComboContainer::RBasicComboContainer(QWidget *parent)
+RBasicComboContainer::RBasicComboContainer(bool init, QWidget *parent)
     : QWidget(parent)
 {
-    //背景透明FramelessWindowHint+WA_TranslucentBackground
-    //这样才能给上面的组件设置透明色
-    setWindowFlags(Qt::Popup|Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_TranslucentBackground);
-    setAttribute(Qt::WA_WindowPropagation);
-    //setAttribute(Qt::WA_StyledBackground);
-    initComponent();
-}
-
-void RBasicComboContainer::showPopup()
-{
-    if(isVisible()||animation->state()==QAbstractAnimation::Running)
-        return;
-    if(targetWidget){
-        //设置为目标widget的宽度
-        setPopSize(targetWidget->width(),1);
-        //先show再move位置才是正确的
-        show();
-        //show之后取到的大小才是计算好的
-        const int view_height=view->getContentsHeight()+2; //margin待设计
-        setPopSize(targetWidget->width(),view_height>150?150:view_height);
-
-        //wrapper复位
-        wrapper->move(0,0);
-        //移动到目标widget上方或下方
-        move(targetWidget->mapToGlobal(targetWidget->rect().bottomLeft()));
+    if(init){
+        initDefault();
     }
-    //弹出如果从0开始，点击窗口标题栏不会隐藏
-    animation->setStartValue(QSize(targetWidget->width(),1));
-    animation->setEndValue(QSize(targetWidget->width(),wrapper->height()));
-    animation->setDuration(250);
-
-    animation->start();
 }
 
-void RBasicComboContainer::hidePopup()
+int RBasicComboContainer::getCurrentIndex() const
 {
-    hide();
+    if(defaultView){
+        return defaultView->getCurrentRow();
+    }
+    return -1;
 }
 
-void RBasicComboContainer::attachTarget(QWidget *widget)
+void RBasicComboContainer::setCurrentIndex(int index)
 {
-    targetWidget=widget;
+    if(defaultView){
+        defaultView->setCurrentRow(index);
+    }
 }
 
-RBasicComboView *RBasicComboContainer::getBasicView() const
+QList<QString> RBasicComboContainer::getItems() const
 {
-    return view;
+    if(defaultView&&defaultView->getBasicModel()){
+        return defaultView->getBasicModel()->getModelData();
+    }
+    return QList<QString>();
 }
 
-void RBasicComboContainer::initComponent()
+void RBasicComboContainer::setItems(const QList<QString> &items)
 {
-    //底层
-    wrapper->setObjectName("wrapper");
-    //列表
-    view->setObjectName("view");
-    connect(view,&RBasicComboView::rowClicked,this,&RBasicComboContainer::hidePopup);
-    //布局
-    QVBoxLayout *layout=new QVBoxLayout(wrapper);
+    if(defaultView&&defaultView->getBasicModel()){
+        defaultView->getBasicModel()->setModelData(items);
+    }
+}
+
+int RBasicComboContainer::checkTextRow(const QString &text)
+{
+    if(defaultView){
+        return defaultView->checkTextRow(text);
+    }
+    return -1;
+}
+
+QString RBasicComboContainer::getCurrentText() const
+{
+    if(defaultView){
+        return defaultView->getCurrentText();
+    }
+    return QString();
+}
+
+QString RBasicComboContainer::getPrevText()
+{
+    if(defaultView){
+        return defaultView->getPrevText();
+    }
+    return QString();
+}
+
+QString RBasicComboContainer::getNextText()
+{
+    if(defaultView){
+        return defaultView->getNextText();
+    }
+    return QString();
+}
+
+int RBasicComboContainer::getContentsHeight() const
+{
+    if(defaultView){
+        return defaultView->getContentsHeight();
+    }
+    return 0;
+}
+
+void RBasicComboContainer::initDefault()
+{
+    defaultView=new RBasicComboView(this);
+    QVBoxLayout *layout=new QVBoxLayout(this);
     layout->setMargin(1);
-    layout->setSpacing(0);
-    layout->addWidget(view);
-
-    animation=new QPropertyAnimation(this,"size",this);
-    connect(animation,&QPropertyAnimation::finished,[this]{
-        view->setFocus(); //弹出后获得焦点
-    });
+    layout->addWidget(defaultView);
+    //
+    connect(defaultView,&RBasicComboView::currentRowChanged,this,&RBasicComboContainer::currentIndexChanged);
+    connect(defaultView,&RBasicComboView::rowClicked,this,&RBasicComboContainer::updateData);
+    connect(defaultView,&RBasicComboView::modelReseted,this,&RBasicComboContainer::updateData);
 }
 
-void RBasicComboContainer::setPopSize(int width, int height)
-{
-    //如果会被内容撑开，可以用fixed size
-    resize(width,1);
-    wrapper->resize(width,height);
-}

@@ -7,7 +7,7 @@
 #include "RBasicComboModel.h"
 
 /**
- * @brief BasicComboBox的弹框列表
+ * @brief BasicComboBox默认弹框的list
  * @author 龚建波
  * @date 2020-7-6
  */

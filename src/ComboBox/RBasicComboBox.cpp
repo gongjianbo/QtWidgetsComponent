@@ -19,17 +19,22 @@ RBasicComboBox::RBasicComboBox(QWidget *parent)
 
 RBasicComboBox::~RBasicComboBox()
 {
-    container->hidePopup();
+    boxPop->hidePopup();
 }
 
 int RBasicComboBox::getCurrentIndex() const
 {
-    return container->getBasicView()->getCurrentRow();
+    if(boxPop->getContainer()){
+        return boxPop->getContainer()->getCurrentIndex();
+    }
+    return -1;
 }
 
 void RBasicComboBox::setCurrentIndex(int index)
 {
-    container->getBasicView()->setCurrentRow(index);
+    if(boxPop->getContainer()){
+        boxPop->getContainer()->setCurrentIndex(index);
+    }
 }
 
 QString RBasicComboBox::getCurrentText() const
@@ -45,13 +50,22 @@ void RBasicComboBox::setCurrentText(const QString text)
 
 QList<QString> RBasicComboBox::getItems() const
 {
-    //没有判断指针有效性
-    return container->getBasicView()->getBasicModel()->getModelData();
+    if(boxPop->getContainer()){
+        return boxPop->getContainer()->getItems();
+    }
+    return QList<QString>();
 }
 
 void RBasicComboBox::setItems(const QList<QString> &items)
 {
-    container->getBasicView()->getBasicModel()->setModelData(items);
+    if(boxPop->getContainer()){
+        boxPop->getContainer()->setItems(items);
+    }
+}
+
+RBasicComboPopup *RBasicComboBox::getPopup() const
+{
+    return boxPop;
 }
 
 bool RBasicComboBox::eventFilter(QObject *watched, QEvent *event)
@@ -61,12 +75,14 @@ bool RBasicComboBox::eventFilter(QObject *watched, QEvent *event)
         switch (event->type()) {
         case QEvent::KeyRelease:
         {
-            //这里只考虑了edit可编辑的情况
-            QKeyEvent *key_event=static_cast<QKeyEvent*>(event);
-            if(key_event->key()==Qt::Key_Up){
-                setCurrentText(container->getBasicView()->getPrevText());
-            }else if(key_event->key()==Qt::Key_Down){
-                setCurrentText(container->getBasicView()->getNextText());
+            if(boxPop->getContainer()){
+                //这里只考虑了edit可编辑的情况
+                QKeyEvent *key_event=static_cast<QKeyEvent*>(event);
+                if(key_event->key()==Qt::Key_Up){
+                    setCurrentText(boxPop->getContainer()->getPrevText());
+                }else if(key_event->key()==Qt::Key_Down){
+                    setCurrentText(boxPop->getContainer()->getNextText());
+                }
             }
         }
             break;
@@ -85,7 +101,7 @@ bool RBasicComboBox::eventFilter(QObject *watched, QEvent *event)
         }
     }else if(watched==boxButton){
         //过频按钮事件
-    }else if(watched==container){
+    }else if(watched==boxPop){
         //过滤弹框事件
         if(event->type()==QEvent::Show){
             boxButton->setChecked(true);
@@ -122,15 +138,11 @@ void RBasicComboBox::initComponent()
     connect(editTimer,&QTimer::timeout,this,&RBasicComboBox::checkTextRow);
 
     //弹框容器设置
-    container->attachTarget(this);
-    container->installEventFilter(this);
-    connect(container->getBasicView(),&RBasicComboView::currentRowChanged,this,&RBasicComboBox::currentIndexChanged);
-    connect(container->getBasicView(),&RBasicComboView::rowClicked,[this]{
-        setCurrentText(container->getBasicView()->getCurrentText());
-    });
-    connect(container->getBasicView(),&RBasicComboView::modelReseted,[this]{
-        setCurrentText(container->getBasicView()->getCurrentText());
-    });
+    boxPop->attachTarget(this);
+    boxPop->installEventFilter(this);
+    initContainer();
+    connect(boxPop,&RBasicComboPopup::containerChanged,this,&RBasicComboBox::initContainer);
+
     //布局
     boxLayout->setMargin(1);
     boxLayout->setSpacing(1);
@@ -141,10 +153,21 @@ void RBasicComboBox::initComponent()
     //然后我事件过滤又把按钮设置成了非选中，所以点击按钮只会触发弹出
     connect(boxButton,&QPushButton::toggled,[this](bool checked){
         if(checked){
-            container->showPopup();
+            boxPop->showPopup();
         }else{
-            container->hidePopup();
+            boxPop->hidePopup();
         }
+    });
+}
+
+void RBasicComboBox::initContainer()
+{
+    if(!boxPop->getContainer())
+        return;
+
+    connect(boxPop->getContainer(),&RBasicComboContainer::currentIndexChanged,this,&RBasicComboBox::currentIndexChanged);
+    connect(boxPop->getContainer(),&RBasicComboContainer::updateData,[this]{
+        setCurrentText(boxPop->getContainer()->getCurrentText());
     });
 }
 
@@ -181,22 +204,22 @@ void RBasicComboBox::initStyleSheet()
                   RBasicComboBox #button:checked{
                   background-color: rgb(180,215,243);
                   }
-                  RBasicComboBox #wrapper{
+                  RBasicComboContainer{
                   background: transparent;
                   border:1px solid rgb(0,120,215);
                   }
-                  RBasicComboBox #view{
+                  RBasicComboView{
                   background:white;
                   border:0;
                   font:13px "宋体";
                   }
-                  RBasicComboBox #view::item{
+                  RBasicComboView::item{
                   height:20px;
                   color:black;
                   background:white;
                   }
-                  RBasicComboBox #view::item:selected,
-                  RBasicComboBox #view::item:hover{
+                  RBasicComboView::item:selected,
+                  RBasicComboView::item:hover{
                   color:white;
                   background:rgb(0,120,215);
                   }
@@ -206,7 +229,9 @@ void RBasicComboBox::initStyleSheet()
 void RBasicComboBox::checkTextRow()
 {
     //如果model中有匹配的文本，就修改view的currentIndex
-    if(container->getBasicView()->checkTextRow(boxEdit->text())>=0){
-        setCurrentText(container->getBasicView()->getCurrentText());
+    if(boxPop->getContainer()){
+        if(boxPop->getContainer()->checkTextRow(boxEdit->text())>=0){
+            setCurrentText(boxPop->getContainer()->getCurrentText());
+        }
     }
 }

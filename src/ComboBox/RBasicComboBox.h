@@ -7,12 +7,16 @@
 #include <QHBoxLayout>
 #include <QTimer>
 
-#include "RBasicComboContainer.h"
+#include "RBasicComboPopup.h"
 
 /**
- * @brief 使用QLineEdit+QPushButton+QListView组合的下拉框
+ * @brief 使用QLineEdit+QPushButton+弹出框组合的下拉框
  * @author 龚建波
  * @date 2020-7-6
+ * @history
+ * [2020-7-7]
+ * 重构弹出框部分，增加可扩展性
+ * 基础组件：Box+Popup，继承Container实现接口后设置给Popup
  */
 class RBasicComboBox : public QWidget
 {
@@ -30,6 +34,9 @@ public:
     //数据项
     QList<QString> getItems() const;
     void setItems(const QList<QString> &items);
+    //弹出框
+    RBasicComboPopup *getPopup() const;
+
 protected:
     //过滤组件事件
     bool eventFilter(QObject *watched, QEvent *event) override;
@@ -37,6 +44,8 @@ protected:
 private:
     //初始化组件设置
     void initComponent();
+    //popup-container
+    void initContainer();
     //默认样式设置
     void initStyleSheet();
     //编辑后查询对应行并设置model
@@ -55,7 +64,7 @@ private:
     //布局
     QHBoxLayout *boxLayout=new QHBoxLayout(this);
     //弹框
-    RBasicComboContainer *container=new RBasicComboContainer(this);
+    RBasicComboPopup *boxPop=new RBasicComboPopup(this);
     //定时器
     QTimer *editTimer=new QTimer(this);
 };

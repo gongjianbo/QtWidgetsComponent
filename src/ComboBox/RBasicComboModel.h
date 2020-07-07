@@ -4,7 +4,7 @@
 #include <QAbstractListModel>
 
 /**
- * @brief BasicComboBox的数据model
+ * @brief BasicComboBox默认弹框的model
  * @author 龚建波
  * @date 2020-7-6
  */
