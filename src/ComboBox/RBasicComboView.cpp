@@ -114,7 +114,7 @@ int RBasicComboView::getContentsHeight() const
 {
     return contentsSize().height()+
             contentsMargins().top()+
-            contentsMargins().bottom();
+            contentsMargins().bottom()+2;
 }
 
 void RBasicComboView::keyReleaseEvent(QKeyEvent *event)
