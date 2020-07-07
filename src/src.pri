@@ -18,8 +18,8 @@ HEADERS += \
 FORMS += \
     $$PWD/mainwindow.ui
 
-include($$PWD/ToolTips/ToolTips.pri)
-INCLUDEPATH+=$$PWD/ToolTips
+include($$PWD/ToolTip/ToolTip.pri)
+INCLUDEPATH+=$$PWD/ToolTip
 
 include($$PWD/ComboBox/ComboBox.pri)
 INCLUDEPATH+=$$PWD/ComboBox
