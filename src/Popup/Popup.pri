@@ -6,7 +6,9 @@ HEADERS += \
     $$PWD/RBasicComboContainer.h \
     $$PWD/RBasicComboModel.h \
     $$PWD/RBasicComboPopup.h \
-    $$PWD/RBasicComboView.h
+    $$PWD/RBasicComboView.h \
+    $$PWD/RBasicDialog.h \
+    $$PWD/RMessageDialog.h
 
 SOURCES += \
     $$PWD/PopupDemo.cpp \
@@ -14,7 +16,11 @@ SOURCES += \
     $$PWD/RBasicComboContainer.cpp \
     $$PWD/RBasicComboModel.cpp \
     $$PWD/RBasicComboPopup.cpp \
-    $$PWD/RBasicComboView.cpp
+    $$PWD/RBasicComboView.cpp \
+    $$PWD/RBasicDialog.cpp \
+    $$PWD/RMessageDialog.cpp
 
 FORMS += \
-    $$PWD/PopupDemo.ui
+    $$PWD/PopupDemo.ui \
+    $$PWD/RBasicDialog.ui \
+    $$PWD/RMessageDialog.ui

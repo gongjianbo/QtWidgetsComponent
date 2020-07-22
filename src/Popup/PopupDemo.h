@@ -22,6 +22,7 @@ public:
 
 private:
     void initBasicComboBox();
+    void initMessageDialog();
 
 private:
     Ui::PopupDemo *ui;
