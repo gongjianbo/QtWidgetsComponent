@@ -1,12 +1,12 @@
-#include "ComboBoxDemo.h"
-#include "ui_ComboBoxDemo.h"
+#include "PopupDemo.h"
+#include "ui_PopupDemo.h"
 
 #include "RBasicComboContainer.h"
 #include <QDebug>
 
-ComboBoxDemo::ComboBoxDemo(QWidget *parent) :
+PopupDemo::PopupDemo(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ComboBoxDemo)
+    ui(new Ui::PopupDemo)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_StyledBackground);
@@ -14,12 +14,12 @@ ComboBoxDemo::ComboBoxDemo(QWidget *parent) :
     initBasicComboBox();
 }
 
-ComboBoxDemo::~ComboBoxDemo()
+PopupDemo::~PopupDemo()
 {
     delete ui;
 }
 
-void ComboBoxDemo::initBasicComboBox()
+void PopupDemo::initBasicComboBox()
 {
     ui->basicComboBoxA->getPopup()->setContainer(new RBasicComboContainer(this));
     ui->basicComboBoxB->getPopup()->setContainer(new RBasicComboContainer(this));

@@ -21,5 +21,6 @@ FORMS += \
 include($$PWD/ToolTip/ToolTip.pri)
 INCLUDEPATH+=$$PWD/ToolTip
 
-include($$PWD/ComboBox/ComboBox.pri)
-INCLUDEPATH+=$$PWD/ComboBox
+include($$PWD/Popup/Popup.pri)
+INCLUDEPATH+=$$PWD/Popup
+

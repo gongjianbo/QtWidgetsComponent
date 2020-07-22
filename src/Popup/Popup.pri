@@ -1,8 +1,7 @@
-FORMS += \
-    $$PWD/ComboBoxDemo.ui
+
 
 HEADERS += \
-    $$PWD/ComboBoxDemo.h \
+    $$PWD/PopupDemo.h \
     $$PWD/RBasicComboBox.h \
     $$PWD/RBasicComboContainer.h \
     $$PWD/RBasicComboModel.h \
@@ -10,9 +9,12 @@ HEADERS += \
     $$PWD/RBasicComboView.h
 
 SOURCES += \
-    $$PWD/ComboBoxDemo.cpp \
+    $$PWD/PopupDemo.cpp \
     $$PWD/RBasicComboBox.cpp \
     $$PWD/RBasicComboContainer.cpp \
     $$PWD/RBasicComboModel.cpp \
     $$PWD/RBasicComboPopup.cpp \
     $$PWD/RBasicComboView.cpp
+
+FORMS += \
+    $$PWD/PopupDemo.ui

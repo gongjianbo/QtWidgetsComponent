@@ -74,9 +74,9 @@ QTabBar::scroller{
         <string>ToolTip</string>
        </attribute>
       </widget>
-      <widget class="ComboBoxDemo" name="tabComboBox">
+      <widget class="PopupDemo" name="tabPopup">
        <attribute name="title">
-        <string>ComboBox</string>
+        <string>Popup</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tabOther">
@@ -97,9 +97,9 @@ QTabBar::scroller{
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ComboBoxDemo</class>
+   <class>PopupDemo</class>
    <extends>QWidget</extends>
-   <header>ComboBoxDemo.h</header>
+   <header>PopupDemo.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
