@@ -1,0 +1,9 @@
+/bin
+/build
+
+.git
+.vs
+.vscode
+.DS_Store
+
+*.user

@@ -1,2 +1,3 @@
-# RectangleComponent
-QtWidgets的一些简易自定义组件
+# QtWidgets Component
+
+QtWidgets custom components. QtWidgets 自定义组件
