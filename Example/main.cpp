@@ -1,4 +1,5 @@
 #include <QApplication>
+#include "CuteComponent.h"
 #include "MainWindow.h"
 
 int main(int argc, char *argv[])
@@ -9,6 +10,7 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
+    CuteComponent::hello();
     MainWindow window;
     window.show();
 

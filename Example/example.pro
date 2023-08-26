@@ -15,14 +15,17 @@ DESTDIR = $$PWD/../bin
 
 SOURCES += \
     $$PWD/main.cpp \
-    $$PWD/MainWindow.cpp
+    $$PWD/MainWindow.cpp \
+    ToolTipDemo.cpp
 
 HEADERS += \
-    $$PWD/MainWindow.h
+    $$PWD/MainWindow.h \
+    ToolTipDemo.h
 
 FORMS += \
-    $$PWD/MainWindow.ui
+    $$PWD/MainWindow.ui \
+    ToolTipDemo.ui
 
-unix|win32: LIBS += -L$$PWD/../bin -lQtComponent
-INCLUDEPATH += $$PWD/../QtComponent
-DEPENDPATH += $$PWD/../QtComponent
+unix|win32: LIBS += -L$$PWD/../bin -lCuteComponent
+INCLUDEPATH += $$PWD/../CuteComponent
+DEPENDPATH += $$PWD/../CuteComponent

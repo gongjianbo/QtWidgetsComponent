@@ -1,5 +1,7 @@
 TEMPLATE = subdirs
 CONFIG += ordered
 
-SUBDIRS += QtComponent
+SUBDIRS += CuteComponent
 SUBDIRS += Example
+
+Example.depends += CuteComponent

@@ -10,13 +10,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 TEMPLATE = lib
-TARGET = QtComponent
+TARGET = CuteComponent
 DESTDIR = $$PWD/../bin
-DEFINES += QtComponent_Library
+DEFINES += CuteComponent_Library
 
 HEADERS += \
-    QtComponent.h \
-    QtComponentExport.h
+    CuteComponent.h \
+    CuteComponentExport.h
 
 SOURCES += \
-    QtComponent.cpp
+    CuteComponent.cpp
+
+include($$PWD/ToolTip/ToolTip.pri)
+INCLUDEPATH += $$PWD/ToolTip

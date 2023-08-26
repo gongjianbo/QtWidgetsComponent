@@ -1,8 +1,8 @@
 #pragma once
 #include <QObject>
-#include "QtComponentExport.h"
+#include "CuteComponentExport.h"
 
-class QtComponent_API QtComponent
+class Cute_API CuteComponent
 {
 public:
     static void hello();
