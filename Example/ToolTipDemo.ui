@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>525</width>
-    <height>342</height>
+    <width>611</width>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@ QPushButton:hover{
 background-color:rgb(255,170,0);
 }
 QPushButton:pressed{
-background-color:rgb(255,255,0);
+background-color:rgb(255,150,0);
 }
 QPushButton:disabled{
 background-color:rgb(150,150,150);
@@ -37,7 +37,19 @@ background-color:rgb(150,150,150);
 QComboBox{
 border:1px solid white;
 }
-/**/
+QComboBox QAbstractItemView{
+border:1px solid white;
+background-color:rgb(20,50,70);
+}
+QComboBox QAbstractItemView::item{/*需要代码中-&amp;gt;setView(new QListView(this));*/
+height:26px;
+font:15px &quot;宋体&quot;;
+background-color:rgb(20,50,70);
+}
+QComboBox QAbstractItemView::item:selected{
+background-color:rgb(255,170,0);
+}
+/*文本框*/
 QLabel{
 font:14px &quot;宋体&quot;;
 color:white;
@@ -52,7 +64,7 @@ color:white;
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>CuteToolTip:</string>
+        <string>ToolTip:</string>
        </property>
       </widget>
      </item>
@@ -99,6 +111,125 @@ color:white;
      </item>
      <item>
       <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>DesktopTip:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="boxDesktopTipAni">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>28</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="boxDesktopTipArea">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>28</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnDesktopTipShow">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Show</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnDesktopTipKeep">
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Keep</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnDesktopTipHide">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Hide</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

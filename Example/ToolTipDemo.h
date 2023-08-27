@@ -14,6 +14,7 @@ public:
 
 private:
     void initToolTip();
+    void initDesktopTip();
 
 private:
     Ui::ToolTipDemo *ui;
