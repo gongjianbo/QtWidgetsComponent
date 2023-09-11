@@ -100,8 +100,8 @@ void CuteDesktopTip::hideTip()
 
 void CuteDesktopTip::initAnimation()
 {
-    // 透明度动画
-    aniOpacity = new QPropertyAnimation(form, "windowOpacity");
+    // 透明度动画，窗口才能设置透明度
+    aniOpacity = new QPropertyAnimation(this, "windowOpacity");
     // 判断是否设置了此模式的动画
     if (aniMode & AnimationMode::OpacityAnimation) {
         aniOpacity->setDuration(1500);

@@ -89,7 +89,7 @@ void ToolTipDemo::initDesktopTip()
             });
 
     connect(ui->btnDesktopTipShow, &QPushButton::clicked, [=]{
-        //只显示 n 秒就消失
+        // 只显示 n 秒就消失
         CuteDesktopTip::showTip("测试 showTip"
                                , "这是 1 条信息\n这是 1 条信息\n这是 1 条信息\n这是 1 条信息"
                                , 5);
