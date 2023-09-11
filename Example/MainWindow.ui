@@ -23,7 +23,7 @@ font:14px &quot;宋体&quot;;
 /*TabWidget*/
 QTabWidget{
 /*给tabwidget设置etAttribute(Qt::WA_StyledBackground)*/
-border:1px solid white;
+border:1px solid rgb(230, 230, 230);
 background-color:rgb(20,50,70);
 }
 QTabWidget::tab-bar{
@@ -32,11 +32,11 @@ left:1px;
 }
 QTabWidget::pane { 
 /*background-color:rgb(20,50,70);*/
-border:1px solid white;
+border:1px solid rgb(230, 230, 230);
 } 
 QTabBar{
 /*只有有按钮的地方才是tabbar，空白处是tabwidget的*/
-background-color:white;
+background-color:rgb(230, 230, 230);
 }
 QTabBar::tab{/*页签*/
 min-height:28px;
@@ -60,15 +60,104 @@ QTabBar::tab:selected:hover{
 QTabBar::tear{
 }
 QTabBar::scroller{
-}</string>
+}
+/*滚动区域*/
+QScrollArea{
+border:0;
+background-color: transparent;
+}
+/*滚动条 */
+QScrollBar:vertical{/*竖向*/
+width:20px;
+padding:0 3px;
+margin:0;
+background-color:transparent;
+}
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical{
+background-color: transparent;
+}
+QScrollBar::handle:vertical{
+width:10px;
+min-height:20px;
+margin:20px 0;
+background-color:rgb(210, 210, 210);
+}
+QScrollBar::handle:vertical:hover{
+background-color:rgb(230, 230, 230);
+}
+QScrollBar::add-line:vertical{
+height:20px;
+width:20px;
+subcontrol-position:bottom;
+border-image:url(:/Image/down_white.png);
+}
+QScrollBar::add-line:vertical:hover{
+border-image:url(:/Image/down_orange.png);
+}
+QScrollBar::sub-line:vertical{
+height:20px;
+width:20px;
+subcontrol-position:top;
+border-image:url(:/Image/up_white.png);
+}
+QScrollBar::sub-line:vertical:hover{
+border-image:url(:/Image/up_orange.png);
+}
+QScrollBar:horizontal{/*横向*/
+height:20px;
+padding:3px;
+margin:0;
+background-color:transparent;
+}
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal{
+background-color: transparent;
+}
+QScrollBar::handle:horizontal{
+height:10px;
+min-width:20px;
+margin:0 20px;
+background-color:rgb(210, 210, 210);
+}
+QScrollBar::handle:horizontal:hover{
+background-color:rgb(230, 230, 230);
+}
+QScrollBar::add-line:horizontal{
+height:20px;
+width:20px;
+subcontrol-position:right;
+border-image:url(:/Image/right_white.png);
+}
+QScrollBar::add-line:horizontal:hover{
+border-image:url(:/Image/right_orange.png);
+}
+QScrollBar::sub-line:horizontal{
+height:20px;
+width:20px;
+subcontrol-position:left;
+border-image:url(:/Image/left_white.png);
+}
+QScrollBar::sub-line:horizontal:hover{
+border-image:url(:/Image/left_orange.png);
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
       <widget class="ToolTipDemo" name="tabTooltip">
        <attribute name="title">
         <string>ToolTip</string>
+       </attribute>
+      </widget>
+      <widget class="PopupDemo" name="tabPopup">
+       <attribute name="title">
+        <string>Popup</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tabOther">
@@ -86,6 +175,12 @@ QTabBar::scroller{
    <class>ToolTipDemo</class>
    <extends>QWidget</extends>
    <header>ToolTipDemo.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PopupDemo</class>
+   <extends>QWidget</extends>
+   <header>PopupDemo.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

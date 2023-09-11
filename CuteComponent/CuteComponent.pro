@@ -23,3 +23,6 @@ SOURCES += \
 
 include($$PWD/ToolTip/ToolTip.pri)
 INCLUDEPATH += $$PWD/ToolTip
+
+include($$PWD/Popup/Popup.pri)
+INCLUDEPATH += $$PWD/Popup

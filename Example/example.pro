@@ -16,16 +16,22 @@ DESTDIR = $$PWD/../bin
 SOURCES += \
     $$PWD/main.cpp \
     $$PWD/MainWindow.cpp \
+    PopupDemo.cpp \
     ToolTipDemo.cpp
 
 HEADERS += \
     $$PWD/MainWindow.h \
+    PopupDemo.h \
     ToolTipDemo.h
 
 FORMS += \
     $$PWD/MainWindow.ui \
+    PopupDemo.ui \
     ToolTipDemo.ui
 
 unix|win32: LIBS += -L$$PWD/../bin -lCuteComponent
 INCLUDEPATH += $$PWD/../CuteComponent
 DEPENDPATH += $$PWD/../CuteComponent
+
+RESOURCES += \
+    img.qrc

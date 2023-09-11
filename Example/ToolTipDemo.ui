@@ -21,7 +21,7 @@ background-color:rgb(20,50,70);
 }
 /*按钮*/
 QPushButton{
-border:1px solid white;
+border:1px solid rgb(230, 230, 230);
 background-color:rgb(200,150,0);
 }
 QPushButton:hover{
@@ -35,10 +35,10 @@ background-color:rgb(150,150,150);
 }
 /*下拉框*/
 QComboBox{
-border:1px solid white;
+border:1px solid rgb(230, 230, 230);
 }
 QComboBox QAbstractItemView{
-border:1px solid white;
+border:1px solid rgb(230, 230, 230);
 background-color:rgb(20,50,70);
 }
 QComboBox QAbstractItemView::item{/*需要代码中-&amp;gt;setView(new QListView(this));*/
